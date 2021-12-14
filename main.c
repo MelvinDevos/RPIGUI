@@ -9,25 +9,20 @@
 typedef struct
 {
     int gpio_number;
-    int state;
     int type;
 } Rpi_pin;
 
 Rpi_pin pin_list[] = {
     [0].gpio_number = 17,
-    [0].state = 0,
     [0].type = OUTPUT_TYPE,
 
     [1].gpio_number = 27,
-    [1].state = 0,
     [1].type = OUTPUT_TYPE,
 
     [2].gpio_number = 23,
-    [2].state = 0,
     [2].type = INPUT_TYPE,
 
     [3].gpio_number = 24,
-    [3].state = 0,
     [3].type = INPUT_TYPE};
 
 static void check_inputs(GtkWidget *widget, gpointer data)
@@ -40,7 +35,10 @@ static void check_inputs(GtkWidget *widget, gpointer data)
         {
             char input_string[20];
             INP_GPIO(pin_list[i].gpio_number);
-            int state = GPIO_READ(pin_list[i].gpio_number);
+
+            int state = 0;
+            if (GPIO_READ(pin_list[i].gpio_number))
+                state = 1;
 
             sprintf(input_string, "GPIO%d: %d ", pin_list[i].gpio_number, state);
 
@@ -93,7 +91,6 @@ int main(int argc, char *argv[])
     g_signal_connect(btn_tgl_2, "toggled",
                      G_CALLBACK(output_state),
                      GINT_TO_POINTER(22));
-
 
     GtkWidget *lbl_input = gtk_label_new("Click button for input status!");
     GtkWidget *btn_1 = gtk_button_new_with_label("Check Inputs!");
