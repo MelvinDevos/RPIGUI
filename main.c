@@ -47,7 +47,7 @@ static void check_inputs(GtkWidget *widget, gpointer data)
     }
 
     gtk_label_set_text(GTK_LABEL(data), buff);
-    printf("%s<===\n", buff);
+    printf("=> %s <=\n", buff);
 }
 
 static void output_state(GtkToggleButton *source, gpointer IO)

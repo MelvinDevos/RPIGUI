@@ -82,8 +82,9 @@ int main(int argc, char *argv[])
     GtkWidget *lbl_input = gtk_label_new("Click button for input status!");
 
     GtkObject *adj = gtk_adjustment_new(0, 0, 27, 1, 0, 0);
+    GtkObject *adj2 = gtk_adjustment_new(0, 0, 27, 1, 0, 0);
     GtkWidget *gpio_input_number = gtk_spin_button_new(GTK_ADJUSTMENT(adj), 0, 0);
-    GtkWidget *gpio_output_number = gtk_spin_button_new(GTK_ADJUSTMENT(adj), 0, 0);
+    GtkWidget *gpio_output_number = gtk_spin_button_new(GTK_ADJUSTMENT(adj2), 0, 0);
 
     GtkWidget *btn_tgl_output = gtk_toggle_button_new_with_label("GPIO TOGGLE");
     gtk_toggle_button_set_mode(GTK_TOGGLE_BUTTON(btn_tgl_output),
